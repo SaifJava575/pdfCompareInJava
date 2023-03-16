@@ -9,7 +9,7 @@ public class PDFTextData {
 
 	public static void main(String[] args) throws Exception {
 		System.out.println("Original pdf file data information...........");
-		File pdf = new File("org.pdf");
+		File pdf = new File("rev.pdf");
 
 		PDDocument pdDocument = PDDocument.load(pdf);
 		PDFTextStripper pdfTextStripper = new PDFTextStripper();
