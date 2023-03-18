@@ -13,9 +13,11 @@ import com.github.difflib.text.DiffRowGenerator;
 
 public class TwoPDFFileCompare {
 
+	// https://github.com/java-diff-utils/java-diff-utils this library used and
+	// PDFBox maven dependency
+
 	public static void main(String[] args) throws IOException {
-		
-		
+
 		File pdf = new File("org.pdf");
 		PDDocument pdDocument = PDDocument.load(pdf);
 		PDFTextStripper pdfTextStripper = new PDFTextStripper();
@@ -25,17 +27,18 @@ public class TwoPDFFileCompare {
 		PDDocument pdDocument1 = PDDocument.load(pdf1);
 		PDFTextStripper pdfTextStripper1 = new PDFTextStripper();
 		String text2 = pdfTextStripper1.getText(pdDocument1);
-		
-		
+
 		DiffRowGenerator generator = DiffRowGenerator.create().showInlineDiffs(true).inlineDiffByWord(true)
 				.oldTag(f -> "~").newTag(f -> "**").build();
 		List<DiffRow> rows = generator.generateDiffRows(Arrays.asList(text1), Arrays.asList(text2));
 		System.out.println(rows);
 
-		/*for (DiffRow row : rows) {
-			System.out.println("|" + row.getOldLine() + "| " + row.getNewLine() + " |");
-
-		}*/
+		/*
+		 * for (DiffRow row : rows) { System.out.println("|" + row.getOldLine() + "| " +
+		 * row.getNewLine() + " |");
+		 * 
+		 * }
+		 */
 
 	}
 
